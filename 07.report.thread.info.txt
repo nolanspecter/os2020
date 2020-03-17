@@ -1,0 +1,10 @@
+1. ps aux | grep "firefox"
+
+nolansp+ 25884  2.8  3.5 2991200 283456 tty2   Sl+  20:13   0:12 /usr/lib/firefox/firefox
+
+2. ps -o nlwp 25884
+
+NLWP
+  51
+
+ Number of lightweight processes of firefox with PID == 25884 is 51
