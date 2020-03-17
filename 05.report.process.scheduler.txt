@@ -1,0 +1,37 @@
+1. 	cat /proc/sched_debug | grep "systemd"
+	S           task   PID         tree-key  switches  prio     wait-time             sum-exec        sum-sleep
+
+	S        systemd     1      2014.952683    136094   120         0.000000      7439.420005         0.000000 0 0 /autogroup-2
+ 	Ssystemd-journal   325        87.908646      2029   119         0.000000       522.880565         0.000000 0 0 /autogroup-8
+ 	S  systemd-udevd   354      1484.763254      1283   120         0.000000       909.766031         0.000000 0 0 /autogroup-16
+ 	S        systemd  1002        63.760163       182   120         0.000000       123.532807         0.000000 0 0 /autogroup-72
+ 	S        systemd  1356        97.194667       301   120         0.000000       255.922096         0.000000 0 0 /autogroup-95
+ 	Ssystemd-timesyn   854        13.233624        63   120         0.000000        49.605112         0.000000 0 0 /autogroup-33
+ 	Ssystemd-resolve   852       373.388907      2420   120         0.000000      1299.396349         0.000000 0 0 /autogroup-31
+ 	S systemd-logind   868        93.995023      9212   120         0.000000       310.711367         0.000000 0 0 /autogroup-42
+
+For task systemd with PID == 1, it performed 136094 switches. For tasks "systemd" with PID == 1002 AND PID == 1356, they performed 182 and 301 switcher respectively 
+
+2. cat /proc/1/sched | grep "switches"
+
+nr_switches                                  :               174421
+nr_voluntary_switches                        :               172865
+nr_involuntary_switches                      :                 1556
+
+After a while number of time the process "systemd" with PID == 1 switched has increased to 174421 
+
+3. cat /proc/1002/sched | grep "switches"
+
+nr_switches                                  :                  182
+nr_voluntary_switches                        :                  146
+nr_involuntary_switches                      :                   36
+
+After a while number of time the process "systemd" with PID == 1002 switched is still at 182 
+
+4. cat /proc/1356/sched | grep "switches"
+
+nr_switches                                  :                  312
+nr_voluntary_switches                        :                  289
+nr_involuntary_switches                      :                   23
+
+After a while number of time the process "systemd" with PID == 1356 switched has increased to 312
